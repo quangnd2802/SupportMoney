@@ -24,12 +24,14 @@ namespace VNVon
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(x => x.UseSqlServer(Configuration.GetConnectionString("VNVonConnection")));
+            services.AddDbContext<VNVonContext>(x => x.UseSqlServer(Configuration.GetConnectionString("VNVonConnection")));
             services.AddControllers();
             services.AddCors();
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
+            services.AddScoped(typeof(IUserService), typeof(UserService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

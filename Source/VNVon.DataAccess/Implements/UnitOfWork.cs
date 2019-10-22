@@ -8,7 +8,7 @@ namespace VNVon.DataAccess.Implements
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly Context _context;
+        private readonly VNVonContext _context;
         private bool disposed;
         private Dictionary<string, object> repositories;
 
@@ -30,7 +30,7 @@ namespace VNVon.DataAccess.Implements
             return (RepositoryBase<T>)repositories[type];
         }
 
-        public UnitOfWork(Context context)
+        public UnitOfWork(VNVonContext context)
         {
             _context = context;
         }

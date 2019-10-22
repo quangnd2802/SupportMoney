@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Other\\Source\\VNVon.Biz\\VNVon.Service.csproj": {}
+    "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.Biz\\VNVon.Service.csproj": {}
   },
   "projects": {
-    "H:\\Other\\Source\\VNVon.Biz\\VNVon.Service.csproj": {
+    "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.Biz\\VNVon.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Other\\Source\\VNVon.Biz\\VNVon.Service.csproj",
+        "projectUniqueName": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.Biz\\VNVon.Service.csproj",
         "projectName": "VNVon.Service",
-        "projectPath": "H:\\Other\\Source\\VNVon.Biz\\VNVon.Service.csproj",
-        "packagesPath": "C:\\Users\\ndquang2\\.nuget\\packages\\",
-        "outputPath": "H:\\Other\\Source\\VNVon.Biz\\obj\\",
+        "projectPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.Biz\\VNVon.Service.csproj",
+        "packagesPath": "C:\\Users\\lhquang2\\.nuget\\packages\\",
+        "outputPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.Biz\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ndquang2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lhquang2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "H:\\Other\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {
-                "projectPath": "H:\\Other\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj"
+              "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {
+                "projectPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj"
               }
             }
           }
@@ -44,6 +44,12 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -63,20 +69,20 @@
         }
       }
     },
-    "H:\\Other\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {
+    "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Other\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
+        "projectUniqueName": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
         "projectName": "VNVon.DataAccess",
-        "projectPath": "H:\\Other\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\ndquang2\\.nuget\\packages\\",
-        "outputPath": "H:\\Other\\Source\\VNVon.DataAccess\\obj\\",
+        "projectPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\lhquang2\\.nuget\\packages\\",
+        "outputPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ndquang2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lhquang2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

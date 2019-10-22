@@ -7,7 +7,7 @@ using VNVon.DataAccess.Interfaces;
 
 namespace VNVon.DataAccess.Implements
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         private readonly IUnitOfWork _unitOfWork;
         public RepositoryBase(IUnitOfWork unitOfWork)
