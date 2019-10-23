@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Linq;
 using VNVon.DataAccess.Interfaces;
 using VNVon.DataAccess.Models;
 using VNVon.Service.Common;
@@ -12,6 +13,24 @@ namespace VNVon.Service.Implements
     {
         public UserService(IUnitOfWork unitOfWork, IRepositoryBase<User> repository) : base(unitOfWork, repository)
         {
+        }
+
+        public LoginDTO Login(LoginDTO user)
+        {
+            LoginDTO result = null;
+
+            var users = _repository.FindByCondition(u => u.Username == user.Username && u.MatKhau == user.Password);
+            if(users != null && users.Any())
+            {
+                var model = users.ElementAt(0);
+                result = new LoginDTO()
+                {
+                    Username = model.Username,
+                    Role = "Admin"                    
+                };
+            }
+
+            return result;
         }
 
         public void Register(CaNhanDTO caNhanDTO)

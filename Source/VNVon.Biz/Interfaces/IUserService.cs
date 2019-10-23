@@ -6,6 +6,7 @@ namespace VNVon.Service.Interfaces
     public interface IUserService : IServiceBase<User>
     {
         public void Register(CaNhanDTO caNhanDTO);
-            
+
+        public LoginDTO Login(LoginDTO user);
     }
 }

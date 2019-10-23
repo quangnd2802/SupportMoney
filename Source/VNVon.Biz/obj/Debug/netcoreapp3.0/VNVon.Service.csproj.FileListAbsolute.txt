@@ -28,3 +28,14 @@ E:\Quang\Projects\vnvon\GIT\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.Asse
 E:\Quang\Projects\vnvon\GIT\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.csproj.CopyComplete
 E:\Quang\Projects\vnvon\GIT\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.dll
 E:\Quang\Projects\vnvon\GIT\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.pdb
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\bin\Debug\netcoreapp3.0\VNVon.Service.deps.json
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\bin\Debug\netcoreapp3.0\VNVon.Service.dll
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\bin\Debug\netcoreapp3.0\VNVon.Service.pdb
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\bin\Debug\netcoreapp3.0\VNVon.DataAccess.dll
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\bin\Debug\netcoreapp3.0\VNVon.DataAccess.pdb
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.csprojAssemblyReference.cache
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.AssemblyInfoInputs.cache
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.AssemblyInfo.cs
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.csproj.CopyComplete
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.dll
+D:\QuangLH\Project\VN_Von\GIT\Source\VNVon.Biz\obj\Debug\netcoreapp3.0\VNVon.Service.pdb

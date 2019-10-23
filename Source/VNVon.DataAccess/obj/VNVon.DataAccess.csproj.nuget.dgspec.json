@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {}
+    "D:\\QuangLH\\Project\\VN_Von\\GIT\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {}
   },
   "projects": {
-    "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {
+    "D:\\QuangLH\\Project\\VN_Von\\GIT\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
+        "projectUniqueName": "D:\\QuangLH\\Project\\VN_Von\\GIT\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
         "projectName": "VNVon.DataAccess",
-        "projectPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\lhquang2\\.nuget\\packages\\",
-        "outputPath": "E:\\Quang\\Projects\\vnvon\\GIT\\VNVon.DataAccess\\obj\\",
+        "projectPath": "D:\\QuangLH\\Project\\VN_Von\\GIT\\Source\\VNVon.DataAccess\\VNVon.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\quang\\.nuget\\packages\\",
+        "outputPath": "D:\\QuangLH\\Project\\VN_Von\\GIT\\Source\\VNVon.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\lhquang2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\quang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -48,6 +48,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.8, )"
             }
           },
           "imports": [
