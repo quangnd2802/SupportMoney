@@ -30,6 +30,8 @@ namespace VNVon.Service.DTO
 
         public string MatKhau { get; set; }
 
+        public string IdNguoiGioiThieu { get; set; }
+
         public string ViTriTrongCongTy { get; set; }
 
         public int UserType { get; set; }

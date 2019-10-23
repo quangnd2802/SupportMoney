@@ -4,8 +4,7 @@
     {
         public int Id { get; set; }
 
-        public string VieLinhVuc { get; set; }
+        public string LinhVuc { get; set; }
 
-        public string EnLinhVuc { get; set; }
     }
 }

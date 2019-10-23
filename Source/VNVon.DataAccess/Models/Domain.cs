@@ -2,6 +2,7 @@
 
 namespace VNVon.DataAccess.Models
 {
+    [Table("Domain")]
     public class Domain
     {
         public int Id { get; set; }
