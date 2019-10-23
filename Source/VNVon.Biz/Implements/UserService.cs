@@ -47,6 +47,9 @@ namespace VNVon.Service.Implements
             CreatePassworHard(user.MatKhau, out passwordHash, out passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+
+            user.Username = user.Cmnd;
+
             _repository.Create(user);
             _unitOfWork.Save();
 
