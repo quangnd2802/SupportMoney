@@ -44,7 +44,7 @@ namespace VNVon.Service.Implements
             var user = iMapper.Map<CaNhanDTO, User>(caNhanDTO);
 
             byte[] passwordHash, passwordSalt;
-            CreatePassworHard(user.MatKhau, out passwordHash, out passwordSalt);
+            CreatePassworHard(caNhanDTO.MatKhau, out passwordHash, out passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
@@ -53,7 +53,29 @@ namespace VNVon.Service.Implements
             _repository.Create(user);
             _unitOfWork.Save();
 
-            MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
+            //MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
+        }
+
+        public void RegisterCompany(DoanhNghiepDauTuDTO doanhNghiepDauTu)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DoanhNghiepDauTuDTO, User>();
+                cfg.CreateMap<string, DateTime>().ConvertUsing(new DateTimeConverterForString());
+            });
+            IMapper iMapper = config.CreateMapper();
+            var user = iMapper.Map<DoanhNghiepDauTuDTO, User>(doanhNghiepDauTu);
+
+            byte[] passwordHash, passwordSalt;
+            CreatePassworHard(doanhNghiepDauTu.MatKhau, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            user.Username = user.CongTySoDangKyKinhDoanh;
+
+            _repository.Create(user);
+            _unitOfWork.Save();
+
+            //MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
         }
 
         private void CreatePassworHard(string password, out byte[] passwordHash, out byte[] passwordSalt)

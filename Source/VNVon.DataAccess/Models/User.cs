@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace VNVon.DataAccess.Models
 {
@@ -26,6 +27,9 @@ namespace VNVon.DataAccess.Models
         [Column("CaNhan.NgaySinh")]
         public DateTime? NgaySinh { get; set; }
 
+        [Column("CaNhan.MaSoThue")]
+        public string MaSoThue { get; set; }
+
         [Column("CaNhan.SoDiDong")]
         public string SoDiDong { get; set; }
 
@@ -41,9 +45,6 @@ namespace VNVon.DataAccess.Models
         [Column("CaNhan.DiaChiNha")]
         public string DiaChiNha { get; set; }
 
-        [Column("CaNhan.MatKhau")]
-        public string MatKhau { get; set; }
-
         [Column("CaNhan.ViTriTrongCongTy")]
         public string ViTriTrongCongTy { get; set; }
 
@@ -53,8 +54,31 @@ namespace VNVon.DataAccess.Models
         [Column("Username")]
         public string Username { get; set; }
 
+        [JsonIgnore]
         public byte[] PasswordHash { get; set; }
 
+        [JsonIgnore]
         public byte[] PasswordSalt { get; set; }
+
+        [Column("CongTy.Ten")]
+        public string CongTyTen { get; set; }
+
+        [Column("CongTy.IdLinhVuc")]
+        public int CongTyIdLinhVuc { get; set; }
+
+        [Column("CongTy.SoDangKyKinhDoanh")]
+        public string CongTySoDangKyKinhDoanh { get; set; }
+
+        [Column("CongTy.NgayCapPhep")]
+        public DateTime? CongTyNgayCapPhep { get; set; }
+
+        [Column("CongTy.DuocCapBoi")]
+        public string CongTyDuocCapBoi { get; set; }
+
+        [Column("CongTy.IdThanhPho")]
+        public int CongTyIdThanhPho { get; set; }
+
+        [Column("CongTy.DiaChiCongTy")]
+        public string CongTyDiaChiCongTy { get; set; }
     }
 }

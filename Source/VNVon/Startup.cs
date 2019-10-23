@@ -1,5 +1,6 @@
 
 
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +39,7 @@ namespace VNVon
             services.AddDbContext<VNVonContext>(x => x.UseSqlServer(Configuration.GetConnectionString("VNVonConnection")));
             services.AddControllers();
             services.AddCors();
-            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest).AddFluentValidation();
 
             var keyValue = Configuration.GetSection("AppSettings:SecurityKey").Value;
 

@@ -7,6 +7,8 @@ namespace VNVon.Service.Interfaces
     {
         public void Register(CaNhanDTO caNhanDTO);
 
+        public void RegisterCompany(DoanhNghiepDauTuDTO doanhNghiepDauTu);
+
         public LoginDTO Login(LoginDTO user);
     }
 }
