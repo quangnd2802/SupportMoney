@@ -12,8 +12,7 @@ namespace VNVon.Service.Implements
     public class UserService : ServiceBase<User>, IUserService
     {
         public UserService(IUnitOfWork unitOfWork, IRepositoryBase<User> repository) : base(unitOfWork, repository)
-        {
-        }
+        {}
 
         public LoginDTO Login(LoginDTO user)
         {
@@ -49,7 +48,9 @@ namespace VNVon.Service.Implements
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
             _repository.Create(user);
-            _unitOfWork.Save();            
+            _unitOfWork.Save();
+
+            MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
         }
 
         private void CreatePassworHard(string password, out byte[] passwordHash, out byte[] passwordSalt)

@@ -7,7 +7,6 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using VNVon.DataAccess.Models;
 using VNVon.Service.DTO;
 using VNVon.Service.Interfaces;
 
@@ -33,7 +32,7 @@ namespace VNVon.Controllers
         [AllowAnonymous]
         [Route("register")]
         public ActionResult UserRegistor([FromBody] CaNhanDTO user)
-        {
+        {            
             _service.Register(user);
             return new OkResult();
         }
