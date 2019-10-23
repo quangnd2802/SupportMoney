@@ -19,16 +19,18 @@ namespace VNVon.Service.Implements
         {
             LoginDTO result = null;
 
-            var users = _repository.FindByCondition(u => u.Username == user.Username && u.MatKhau == user.Password);
-            if(users != null && users.Any())
+            var users = _repository.FindByCondition(u => u.Username == user.Username);
+
+            // && u.MatKhau == user.Password
+            if (users == null || !VerifyPasswordHash(user.Password, users.ElementAt(0).PasswordHash, users.ElementAt(0).PasswordSalt))
+                return null;
+
+            var model = users.ElementAt(0);
+            result = new LoginDTO()
             {
-                var model = users.ElementAt(0);
-                result = new LoginDTO()
-                {
-                    Username = model.Username,
-                    Role = "Admin"                    
-                };
-            }
+                Username = model.Username,
+                Role = "Admin"                    
+            };            
 
             return result;
         }
@@ -42,8 +44,35 @@ namespace VNVon.Service.Implements
             IMapper iMapper = config.CreateMapper();
             var user = iMapper.Map<CaNhanDTO, User>(caNhanDTO);
 
+            byte[] passwordHash, passwordSalt;
+            CreatePassworHard(user.MatKhau, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
             _repository.Create(user);
             _unitOfWork.Save();            
+        }
+
+        private void CreatePassworHard(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key; //ramdomkey 
+                passwordHash = hmac.ComputeHash(System.Text.UTF8Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var _passwordHash = hmac.ComputeHash(System.Text.UTF8Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < _passwordHash.Length; i++)
+                {
+                    if (_passwordHash[i] != passwordHash[i])
+                        return false;
+                }
+            }
+            return true;
         }
     }
 }
