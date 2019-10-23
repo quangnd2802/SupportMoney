@@ -12,8 +12,7 @@ namespace VNVon.Service.Implements
     public class UserService : ServiceBase<User>, IUserService
     {
         public UserService(IUnitOfWork unitOfWork, IRepositoryBase<User> repository) : base(unitOfWork, repository)
-        {
-        }
+        {}
 
         public LoginDTO Login(LoginDTO user)
         {
@@ -42,8 +41,16 @@ namespace VNVon.Service.Implements
             IMapper iMapper = config.CreateMapper();
             var user = iMapper.Map<CaNhanDTO, User>(caNhanDTO);
 
+            // Using CMND for username field
+            user.Username = user.Cmnd.Trim().ToLower();
+
+            // Encrypt password
+            //user.MatKhau = encrypt(user.MatKhau);
+
             _repository.Create(user);
-            _unitOfWork.Save();            
+            _unitOfWork.Save();
+
+            MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
         }
     }
 }
