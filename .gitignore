@@ -4,3 +4,7 @@ Source/VNVon/Extensions/ExceptionMiddlewareExtensions.cs
 *.pdb
 *.dll
 *.cache
+Source/VNVon.Biz/obj
+Source/VNVon.Biz/bin
+Source/VNVon.DataAccess/bin
+Source/VNVon.DataAccess/obj
