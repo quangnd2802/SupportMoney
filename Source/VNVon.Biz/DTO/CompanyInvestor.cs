@@ -38,6 +38,14 @@ namespace VNVon.Service.DTO
 
         public string Username { get; set; }
 
+        public decimal? SoTienDaGui { get; set; }
+
+        public decimal? SoTienDaRut { get; set; }
+
+        public decimal? SoDuKhaDung { get; set; }
+
+        public decimal? SoTienDangDauTu { get; set; }
+
         // Doanh nghiep dau tu
 
         public string CongTyTen { get; set; }

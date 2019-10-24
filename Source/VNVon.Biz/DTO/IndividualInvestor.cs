@@ -39,5 +39,13 @@ namespace VNVon.Service.DTO
         public int UserType { get; set; }
 
         public string Username { get; set; }
+
+        public decimal? SoTienDaGui { get; set; }
+
+        public decimal? SoTienDaRut { get; set; }
+
+        public decimal? SoDuKhaDung { get; set; }
+
+        public decimal? SoTienDangDauTu { get; set; }
     }
 }

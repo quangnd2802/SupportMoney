@@ -60,7 +60,7 @@ namespace VNVon.Controllers
             if (result.IsValid)
             {
                 _service.RegisterCompany(user);
-                return OK();
+                return Ok();
             }
             else
             {
