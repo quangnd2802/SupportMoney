@@ -4,6 +4,7 @@ using System.Linq;
 using VNVon.DataAccess.Interfaces;
 using VNVon.DataAccess.Models;
 using VNVon.Service.Common;
+using VNVon.Service.CustomException;
 using VNVon.Service.DTO;
 using VNVon.Service.Interfaces;
 
@@ -18,11 +19,13 @@ namespace VNVon.Service.Implements
         {
             LoginDTO result = null;
 
-            var users = _repository.FindByCondition(u => u.Username == user.Username);
+            var users = _repository.FindByCondition(u => u.Username.ToLower() == user.Username.ToLower());
 
             // && u.MatKhau == user.Password
-            if (users == null || !VerifyPasswordHash(user.Password, users.ElementAt(0).PasswordHash, users.ElementAt(0).PasswordSalt))
-                return null;
+            if (users == null || users.Count() == 0 || !VerifyPasswordHash(user.Password, users.ElementAt(0).PasswordHash, users.ElementAt(0).PasswordSalt))
+            {
+                throw new ServiceException("Username or Password is invalid.", (int)ErrorCode.AccountNotExist);
+            }                    
 
             var model = users.ElementAt(0);
             result = new LoginDTO()

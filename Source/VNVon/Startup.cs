@@ -39,7 +39,11 @@ namespace VNVon
             services.AddDbContext<VNVonContext>(x => x.UseSqlServer(Configuration.GetConnectionString("VNVonConnection")));
             services.AddControllers();
             services.AddCors();
-            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest).AddFluentValidation();
+            services.AddMvc(option =>
+            {
+                option.EnableEndpointRouting = false;
+                option.Filters.Add(typeof(ExceptionMiddlewareExtensions));
+            }).SetCompatibilityVersion(CompatibilityVersion.Latest).AddFluentValidation();
 
             var keyValue = Configuration.GetSection("AppSettings:SecurityKey").Value;
 
@@ -71,8 +75,7 @@ namespace VNVon
                 
             }
             loggerFactory.AddLog4Net();
-
-            app.ConfigureExceptionHandler();
+            
             app.UseAuthentication();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();

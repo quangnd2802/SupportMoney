@@ -1,37 +1,52 @@
 ﻿using log4net;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 using System.Net;
+using VNVon.Service.CustomException;
 
 namespace VNVon.Extensions
 {
-    public static class ExceptionMiddlewareExtensions
+    public class ExceptionMiddlewareExtensions : IExceptionFilter
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(ExceptionMiddlewareExtensions));
 
-        public static void ConfigureExceptionHandler(this IApplicationBuilder app)
+        public void OnException(ExceptionContext actionExecutedContext)
         {
-            app.UseExceptionHandler(appError =>
+            // Custom Exceptions
+            if (actionExecutedContext.Exception is ServiceException)
             {
-                appError.Run(async context =>
+                var customEx = actionExecutedContext.Exception as ServiceException;
+                var content = JsonConvert.SerializeObject(customEx.GetObjectMessage());
+
+                actionExecutedContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                actionExecutedContext.HttpContext.Response.ContentType = "application/json";
+                actionExecutedContext.HttpContext.Response.ContentLength = content.Length;
+                actionExecutedContext.HttpContext.Response.WriteAsync(content);
+            }
+            else
+            {
+                // Unhandled exceptions
+                string exceptionMessage = string.Empty;
+                if (actionExecutedContext.Exception.InnerException == null)
                 {
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    context.Response.ContentType = "application/json";
+                    exceptionMessage = actionExecutedContext.Exception.Message;
+                }
+                else
+                {
+                    exceptionMessage = actionExecutedContext.Exception.InnerException.Message;
+                }
 
-                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-                    if (contextFeature != null)
-                    {
-                        log.Error($"Something went wrong: {contextFeature.Error}");
+                // TODO: Log exception message to database or local
+                log.Error(exceptionMessage, actionExecutedContext.Exception);
+                
+                var content = JsonConvert.SerializeObject(new { ErrorCode = 500, Message = "An error has occured." });
 
-                        await context.Response.WriteAsync(new ErrorDetails()
-                        {
-                            StatusCode = context.Response.StatusCode,
-                            Message = "Internal Server Error."
-                        }.ToString());
-                    }
-                });
-            });
+                actionExecutedContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                actionExecutedContext.HttpContext.Response.ContentType = "application/json";
+                actionExecutedContext.HttpContext.Response.ContentLength = content.Length;
+                actionExecutedContext.HttpContext.Response.WriteAsync(content);
+            }            
         }
     }
 }

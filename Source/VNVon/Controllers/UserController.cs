@@ -38,15 +38,15 @@ namespace VNVon.Controllers
             UserValidator validator = new UserValidator();
             var result = validator.Validate(user);
 
-            if(result.IsValid)
+            if (result.IsValid)
             {
                 _service.Register(user);
-                return new OkResult();
+                return Ok();
             }
             else
             {
                 return BadRequest(result.Errors);
-            }            
+            }
         }
 
         [HttpPost]
@@ -60,13 +60,13 @@ namespace VNVon.Controllers
             if (result.IsValid)
             {
                 _service.RegisterCompany(user);
-                return new OkResult();
+                return OK();
             }
             else
             {
-                return BadRequest(result.Errors);
+                return BadRequest(VNVon.Utilities.Utility.GetModelMessage(result.Errors));
             }
-            
+
         }
 
         [HttpPost]
@@ -80,41 +80,35 @@ namespace VNVon.Controllers
             if (validationResult.IsValid)
             {
                 var result = _service.Login(user);
-                if (result == null)
-                {
-                    return Unauthorized();
-                }
-                else
-                {
-                    var claim = new[]
+
+                var claim = new[]
                     {
                     new Claim(ClaimTypes.NameIdentifier, result.Username),
                     new Claim(ClaimTypes.Role, result.Role)
                 };
 
-                    var keyValue = _config.GetSection("AppSettings:SecurityKey").Value;
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue));
+                var keyValue = _config.GetSection("AppSettings:SecurityKey").Value;
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue));
 
 
-                    var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-                    var tokenDescriptor = new SecurityTokenDescriptor
-                    {
-                        Subject = new ClaimsIdentity(claim),
-                        Expires = DateTime.Now.AddDays(1),
-                        SigningCredentials = credential
-                    };
+                var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claim),
+                    Expires = DateTime.Now.AddDays(1),
+                    SigningCredentials = credential
+                };
 
-                    var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenHandler = new JwtSecurityTokenHandler();
 
-                    SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+                SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
-                    return Ok(new { token = tokenHandler.WriteToken(token) });
-                }
+                return Ok(new { token = tokenHandler.WriteToken(token) });
             }
             else
             {
-                return BadRequest(validationResult.Errors);
-            }            
+                return BadRequest(VNVon.Utilities.Utility.GetModelMessage(validationResult.Errors));
+            }
         }
 
         [HttpGet]
@@ -124,7 +118,7 @@ namespace VNVon.Controllers
 
             var result = _service.FindByCondition(u => u.Username == username);
 
-            if(result != null && result.Any())
+            if (result != null && result.Any())
             {
                 return Ok(result.First());
             }
@@ -137,7 +131,7 @@ namespace VNVon.Controllers
         [Route("changePassword")]
         public ActionResult ChangePassword([FromBody] ChangePassDto user)
         {
-            var result = _service.ChangePassword(user);            
+            var result = _service.ChangePassword(user);
             return Ok(result);
         }
 
