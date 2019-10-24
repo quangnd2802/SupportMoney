@@ -47,5 +47,15 @@ namespace VNVon.Service.DTO
         public decimal? SoDuKhaDung { get; set; }
 
         public decimal? SoTienDangDauTu { get; set; }
+
+        public string SoTaiKhoanNganHang { get; set; }
+
+        public int IdNganHang { get; set; }
+
+        public string TenChiNhanh { get; set; }
+
+        public string TenChuTaiKhoan { get; set; }
+
+        public string ChiTietTaiKhoan { get; set; }
     }
 }

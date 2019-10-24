@@ -15,5 +15,7 @@ namespace VNVon.DataAccess
         public DbSet<Domain> Domains { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Bank> Banks { get; set; }
     }
 }
