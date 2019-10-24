@@ -10,5 +10,9 @@ namespace VNVon.Service.Interfaces
         public void RegisterCompany(DoanhNghiepDauTuDTO doanhNghiepDauTu);
 
         public LoginDTO Login(LoginDTO user);
+
+        public object ChangePassword(ChangePassDto changePass);
+
+        public object ForgetPassword(ForgetPassDto forgetPass);
     }
 }

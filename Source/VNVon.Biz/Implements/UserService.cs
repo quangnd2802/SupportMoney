@@ -69,7 +69,6 @@ namespace VNVon.Service.Implements
             CreatePassworHard(doanhNghiepDauTu.MatKhau, out passwordHash, out passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-
             user.Username = user.CongTySoDangKyKinhDoanh;
 
             _repository.Create(user);
@@ -99,6 +98,47 @@ namespace VNVon.Service.Implements
                 }
             }
             return true;
+        }
+
+        public object ChangePassword(ChangePassDto changePass)
+        {
+            var users = _repository.FindByCondition(u => u.Username == changePass.Username);
+            var user = users.FirstOrDefault();
+            if (users == null || !VerifyPasswordHash(changePass.OldPassword, user.PasswordHash, user.PasswordSalt))
+                return new
+                {
+                    success = false,
+                    message = CommonConstant.ChangePassUnsuccess
+                };
+
+            byte[] passwordHash, passwordSalt;
+            CreatePassworHard(changePass.NewPassword, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            _unitOfWork.Save();
+
+            return new
+            {
+                success = true,
+                message = CommonConstant.ChangePassSuccess
+            };
+        }
+
+        public object ForgetPassword(ForgetPassDto forgetPass)
+        {
+            var users = _repository.FindByCondition(u => u.Email == forgetPass.email);
+            if (users == null)
+                return new
+                {
+                    success = false,
+                    message = CommonConstant.EmailNotExit
+                };
+
+            return new
+            {
+                success = true,
+                message = CommonConstant.VerifyMailSucess
+            };
         }
     }
 }

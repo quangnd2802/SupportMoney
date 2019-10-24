@@ -131,5 +131,23 @@ namespace VNVon.Controllers
 
             return NotFound();
         }
+
+        [HttpPut]
+        [AllowAnonymous]
+        [Route("changePassword")]
+        public ActionResult ChangePassword([FromBody] ChangePassDto user)
+        {
+            var result = _service.ChangePassword(user);            
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("forgetPassword")]
+        public ActionResult ForgetPassword(ForgetPassDto forgetPassDto)
+        {
+            var result = _service.ForgetPassword(forgetPassDto);
+            return Ok(result);
+        }
     }
 }
