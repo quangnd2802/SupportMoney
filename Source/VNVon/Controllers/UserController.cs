@@ -143,5 +143,18 @@ namespace VNVon.Controllers
             var result = _service.ForgetPassword(forgetPassDto);
             return Ok(result);
         }
+
+        [AllowAnonymous]
+        [HttpGet("historyinvestment")]
+        public ActionResult HistoryInvestment()
+        {
+            var data = new[]
+            {
+                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "", SoTien = 5000000, GhiChu = "" },
+                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "", SoTien = 15000000, GhiChu = "" }
+            };
+
+            return Ok(data);
+        }
     }
 }
