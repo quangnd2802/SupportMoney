@@ -1,0 +1,6 @@
+Source/VNVon/Extensions/ErrorDetails.cs
+Source/VNVon/Controllers/DomainController.cs
+Source/VNVon/Extensions/ExceptionMiddlewareExtensions.cs
+*.pdb
+*.dll
+*.cache
