@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VNVon.Service.DTO
+﻿namespace VNVon.Service.DTO
 {
     public class CaNhanDTO
     {
@@ -14,7 +12,7 @@ namespace VNVon.Service.DTO
 
         public string NoiCap { get; set; }
 
-        public int GioiTinh { get; set; }
+        public string GioiTinh { get; set; }
 
         public string NgaySinh { get; set; }
 

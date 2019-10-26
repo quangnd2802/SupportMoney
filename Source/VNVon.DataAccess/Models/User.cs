@@ -21,8 +21,8 @@ namespace VNVon.DataAccess.Models
         [Column("CaNhan.NoiCap")]
         public string NoiCap { get; set; }
 
-        [Column("CaNhan.IdGioiTinh")]
-        public int GioiTinh { get; set; }
+        [Column("CaNhan.GioiTinh")]
+        public string GioiTinh { get; set; }
 
         [Column("CaNhan.NgaySinh")]
         public DateTime? NgaySinh { get; set; }

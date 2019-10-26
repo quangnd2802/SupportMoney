@@ -11,7 +11,7 @@ namespace VNVon.Validator
             RuleFor(x => x.Cmnd).NotEmpty();
             RuleFor(x => x.NgayCap).NotEmpty();
             RuleFor(x => x.NoiCap).NotEmpty();
-            RuleFor(x => x.GioiTinh).GreaterThan(0);
+            RuleFor(x => x.GioiTinh).NotEmpty();
             RuleFor(x => x.NgaySinh).NotEmpty();
             RuleFor(x => x.MaSoThue).NotEmpty();
             RuleFor(x => x.SoDiDong).NotEmpty();

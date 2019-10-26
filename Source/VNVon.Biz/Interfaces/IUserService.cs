@@ -14,5 +14,7 @@ namespace VNVon.Service.Interfaces
         public object ChangePassword(ChangePassDto changePass);
 
         public object ForgetPassword(ForgetPassDto forgetPass);
+
+        public bool IsExist(string username);
     }
 }

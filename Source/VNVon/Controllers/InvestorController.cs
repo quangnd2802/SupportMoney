@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace VNVon.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class InvestorController : ControllerBase
     {
-        [Route("daututodong")]
+        [Route("borrowers")]
         [HttpGet]
-        public ActionResult AutoChoiceInvest()
+        public ActionResult ListBorrowers()
         {
             return Ok(mockData());
         }
@@ -21,74 +20,128 @@ namespace VNVon.Controllers
         {
             var DanhsachHoso1 = new
             {
-
-                sohoso = "95894",
-                tenconty = "Công ty cổ phần Hoàng Dũng",
-                chungnhankinhdoan = "100010102",
-                trangthai = "tài trợ",
-                tongsotien = 50000000,
-                kyhan = 90,
-                mucdichhuydongvon = "Vốn lưu động",
-                sotiencothedautu = 50000000,
-                tiledautu = 10,
-                chitietnguoivay = new
+                Sohoso = 95894,
+                Tenconty = "Công ty cổ phần Hoàng Dũng",
+                SoChungNhanDangKyKinhDoanh = "100010102",
+                TrangThai = "Thương trường",
+                TongSoTien = 50000000,
+                KyHan = 90,
+                MucDichHuyDongVon = "Vốn lưu động",
+                SoTienCoTheDauTu = 50000000,
+                TyLeDaDuocDauTu = 0,
+                ChiTietNguoiVay = new
                 {
-                    diemtaichinh = 25,
-                    diemdinhtinh = 40,
-                    tongdiem = 65,
-                    tenconty = "Công ty cổ phần Hoàng Dũng",
-                    chungnhankinhdoan = "100010102",
-                    ngaycapphep = "03/11/2009",
-                    duoccapboi = "sở kế hoạch đầu tư",
-                    thanhpho = "Thái Bình",
-                    diachi = "Huyện Tiền Hải",
+                    DiemTaiChinh = 25,
+                    DiemDinhTinh = 40,
+                    TongDiem = 65,
+                    TenCongTy = "Công ty cổ phần Hoàng Dũng",
+                    SoChungNhanDangKyKinhDoanh = "100010102",
+                    NgayDuocCapPhep = "03/11/2009",
+                    DuocCapBoi = "Sở kế hoạch đầu tư",
+                    ThanhPho = "Thái Bình",
+                    DiaChi = "Huyện Tiền Hải",
                 },
-                thongtincanlienlac = new
+                ThongTinNguoiCanLienLac = new
                 {
-                    socanha = "12345",
-                    tendaydu = "Công ty cổ phần Hoàng Dũng",
-                    gioitinh = "Nữ",
-                    vitri = "Giám Đốc",
-                    sodienthoaicodinh = "024838383",
-                    sodienthoaididong = "0882828282",
-                    emailcanhan = "congtyhoangdung2006@gmail.com"
+                    SoCaNha = "12345",
+                    TenDayDu = "Công ty cổ phần Hoàng Dũng",
+                    GioiTinh = "Nữ",
+                    ViTri = "Giám Đốc",
+                    SoDienThoaiCoDinh = "024838383",
+                    SoDiDong = "0882828282",
+                    EmailCaNhan = "congtyhoangdung2006@gmail.com"
+                },
+                LichSuTinDung = new List<dynamic>()
+                {
+                    new {
+                        SoHopDong = 95430,
+                        MucDichHuyDongVon = "Vốn lưu động",
+                        LaiSuat = 16,
+                        SoTienYeuCau = 1000000000,
+                        ThoiHan = 90,
+                        TongSoTienPhaiTra = 1039452055,
+                        NgayDenHan = "07/11/2019",
+                        DuNoConLai = 0,
+                        TrangThai = "Tài trợ",
+                        ChuThich = ""
+                    },
+                    new {
+                        SoHopDong = 95698,
+                        MucDichHuyDongVon = "Vốn lưu động",
+                        LaiSuat = 16,
+                        SoTienYeuCau = 500000000,
+                        ThoiHan = 90,
+                        TongSoTienPhaiTra = 519726027,
+                        NgayDenHan = "",
+                        DuNoConLai = 0,
+                        TrangThai = "Thương trường",
+                        ChuThich = ""
+                    }
                 }
+                
             };
 
             var DanhsachHoso2 = new
             {
-
-                sohoso = "95894",
-                tenconty = "Công ty cổ phần Hoàng Dũng2",
-                chungnhankinhdoan = "122010102",
-                trangthai = "tài trợ",
-                tongsotien = 50000000,
-                kyhan = 90,
-                mucdichhuydongvon = "Vốn lưu động",
-                sotiencothedautu = 50000000,
-                tiledautu = 10,
-                chitietnguoivay = new
+                Sohoso = 95692,
+                Tenconty = "Công ty cổ phần tư vấn thiết kết",
+                SoChungNhanDangKyKinhDoanh = "0106860319",
+                TrangThai = "Thương trường",
+                TongSoTien = 30000000,
+                KyHan = 60,
+                MucDichHuyDongVon = "Vốn lưu động",
+                SoTienCoTheDauTu = 30000000,
+                TyLeDaDuocDauTu = 0,
+                ChiTietNguoiVay = new
                 {
-                    diemtaichinh = 25,
-                    diemdinhtinh = 40,
-                    tongdiem = 65,
-                    tenconty = "Công ty cổ phần Hoàng Dũng2",
-                    chungnhankinhdoan = "100010102",
-                    ngaycapphep = "03/11/2009",
-                    duoccapboi = "sở kế hoạch đầu tư",
-                    thanhpho = "Thái Bình",
-                    diachi = "Huyện Tiền Hải",
+                    DiemTaiChinh = 25,
+                    DiemDinhTinh = 40,
+                    TongDiem = 65,
+                    TenCongTy = "Công ty cổ phần Hoàng Dũng",
+                    SoChungNhanDangKyKinhDoanh = "100010102",
+                    NgayDuocCapPhep = "03/11/2009",
+                    DuocCapBoi = "Sở kế hoạch đầu tư",
+                    ThanhPho = "Thái Bình",
+                    DiaChi = "Huyện Tiền Hải",
                 },
-                thongtincanlienlac = new
+                ThongTinNguoiCanLienLac = new
                 {
-                    socanha = "12345",
-                    tendaydu = "Công ty cổ phần Hoàng Dũng2",
-                    gioitinh = "Nữ",
-                    vitri = "Giám Đốc",
-                    sodienthoaicodinh = "024838383",
-                    sodienthoaididong = "0882828282",
-                    emailcanhan = "congtyhoangdung2006@gmail.com"
+                    SoCaNha = "12345",
+                    TenDayDu = "Công ty cổ phần Hoàng Dũng",
+                    GioiTinh = "Nữ",
+                    ViTri = "Giám Đốc",
+                    SoDienThoaiCoDinh = "024838383",
+                    SoDiDong = "0882828282",
+                    EmailCaNhan = "congtyhoangdung2006@gmail.com"
+                },
+                LichSuTinDung = new List<dynamic>()
+                {
+                    new {
+                        SoHopDong = 95430,
+                        MucDichHuyDongVon = "Vốn lưu động",
+                        LaiSuat = 16,
+                        SoTienYeuCau = 1000000000,
+                        ThoiHan = 90,
+                        TongSoTienPhaiTra = 1039452055,
+                        NgayDenHan = "07/11/2019",
+                        DuNoConLai = 0,
+                        TrangThai = "Tài trợ",
+                        ChuThich = ""
+                    },
+                    new {
+                        SoHopDong = 95698,
+                        MucDichHuyDongVon = "Vốn lưu động",
+                        LaiSuat = 16,
+                        SoTienYeuCau = 500000000,
+                        ThoiHan = 90,
+                        TongSoTienPhaiTra = 519726027,
+                        NgayDenHan = "",
+                        DuNoConLai = 0,
+                        TrangThai = "Thương trường",
+                        ChuThich = ""
+                    }
                 }
+
             };
 
             var mock = new { DanhsachHoso1, DanhsachHoso2 };

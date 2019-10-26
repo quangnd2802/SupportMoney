@@ -53,10 +53,24 @@ namespace VNVon.Service.Implements
 
             user.Username = user.Cmnd;
 
+            if(IsExist(user.Username))
+            {
+                throw new ServiceException("Username already exists.", (int)ErrorCode.CustomerExist);
+            }                
+
             _repository.Create(user);
             _unitOfWork.Save();
 
-            //MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
+            //Mail Body
+            string mailContent = "Cảm ơn quý khách vì đã đăng ký tham gia VNON.<br/>"+
+                "Xin hãy click vào <a href='http://google.com.vn'>đây</a> để xác nhận địa chỉ email và kích hoạt tài khoản.<br/><br/><br/>" +
+                "Xin hãy sử dụng số CMND/Hộ chiếu: <b>" + user.Username +"</b> đã cung cấp trong quá trình đăng ký là tên đăng nhập.<br/><br/>"+
+                "<hr/><br/>" +
+                "Trân trọng,<br/><br/>"+
+                "VNVON | 1800 0052<br/><br/>"+
+                "<a href='mailto:support@vflp2p.com'>support@vflp2p.com</email>";
+
+            MailHelper.SendMail(user.Email, user.Ten, "Xác nhận đăng ký", mailContent);
         }
 
         public void RegisterCompany(DoanhNghiepDauTuDTO doanhNghiepDauTu)
@@ -74,10 +88,23 @@ namespace VNVon.Service.Implements
             user.PasswordSalt = passwordSalt;
             user.Username = user.CongTySoDangKyKinhDoanh;
 
+            if (IsExist(user.Username))
+            {
+                throw new ServiceException("Username already exists.", (int)ErrorCode.CustomerExist);
+            }
+
             _repository.Create(user);
             _unitOfWork.Save();
 
-            //MailHelper.SendMail(user.Email, user.Ten, "Mail xác nhận thông tin tài khoảng", "Done");
+            string mailContent = "Cảm ơn quý khách vì đã đăng ký tham gia VNON.<br/>" +
+                "Xin hãy click vào <a href='http://google.com.vn'>đây</a> để xác nhận địa chỉ email và kích hoạt tài khoản.<br/><br/><br/>" +
+                "Xin hãy sử dụng số CMND/Hộ chiếu: <b>" + user.Username + "</b> đã cung cấp trong quá trình đăng ký là tên đăng nhập.<br/><br/>" +
+                "<hr/><br/>" +
+                "Trân trọng,<br/><br/>" +
+                "VNVON | 1800 0052<br/><br/>" +
+                "<a href='mailto:support@vflp2p.com'>support@vflp2p.com</email>";
+
+            MailHelper.SendMail(user.Email, user.Ten, "Xác nhận đăng ký", mailContent);
         }
 
         private void CreatePassworHard(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -142,6 +169,18 @@ namespace VNVon.Service.Implements
                 success = true,
                 message = CommonConstant.VerifyMailSucess
             };
+        }
+
+        public bool IsExist(string username)
+        {
+            if(!string.IsNullOrEmpty(username))
+            {
+                var result = _repository.FindByCondition(u => u.Username == username.ToLower());
+
+                return result != null && result.Any();
+            }
+
+            return false;
         }
     }
 }
