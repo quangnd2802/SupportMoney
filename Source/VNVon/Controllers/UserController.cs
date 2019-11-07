@@ -150,8 +150,25 @@ namespace VNVon.Controllers
         {
             var data = new[]
             {
-                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "", SoTien = 5000000, GhiChu = "" },
-                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "", SoTien = 15000000, GhiChu = "" }
+                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 5000000, GhiChu = "Nạp tiền vào tài khoản VNVon." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "Rút tiền", SoTien = 15000000, GhiChu = "Rút 15M khỏi tài khoản." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(20).Date, LoaiGiaoDich = "Hoàn trả", SoTien = 3000000, GhiChu = "Hoàn trả gốc lãi từ hồ sơ [XXXXXXXXXX]." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(5).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 2500000, GhiChu = "Nạp tiền vào tài khoản VNVon." }
+            };
+
+            return Ok(data);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("transactions")]
+        public ActionResult Transactions()
+        {
+            var data = new[]
+            {
+                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 5000000, GhiChu = "Nạp tiền vào tài khoản VNVon." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "Rút tiền", SoTien = 15000000, GhiChu = "Rút 15M khỏi tài khoản." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(20).Date, LoaiGiaoDich = "Hoàn trả", SoTien = 3000000, GhiChu = "Hoàn trả gốc lãi từ hồ sơ [XXXXXXXXXX]." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(5).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 2500000, GhiChu = "Nạp tiền vào tài khoản VNVon." }
             };
 
             return Ok(data);

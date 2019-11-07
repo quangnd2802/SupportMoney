@@ -70,7 +70,7 @@ namespace VNVon.Service.Implements
                 "VNVON | 1800 0052<br/><br/>"+
                 "<a href='mailto:support@vflp2p.com'>support@vflp2p.com</email>";
 
-            MailHelper.SendMail(user.Email, user.Ten, "Xác nhận đăng ký", mailContent);
+            //MailHelper.SendMail(user.Email, user.Ten, "Xác nhận đăng ký", mailContent);
         }
 
         public void RegisterCompany(DoanhNghiepDauTuDTO doanhNghiepDauTu)
@@ -104,7 +104,7 @@ namespace VNVon.Service.Implements
                 "VNVON | 1800 0052<br/><br/>" +
                 "<a href='mailto:support@vflp2p.com'>support@vflp2p.com</email>";
 
-            MailHelper.SendMail(user.Email, user.Ten, "Xác nhận đăng ký", mailContent);
+            //MailHelper.SendMail(user.Email, user.Ten, "Xác nhận đăng ký", mailContent);
         }
 
         private void CreatePassworHard(string password, out byte[] passwordHash, out byte[] passwordSalt)
