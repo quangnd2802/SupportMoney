@@ -150,10 +150,10 @@ namespace VNVon.Controllers
         {
             var data = new[]
             {
-                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 5000000, GhiChu = "Nạp tiền vào tài khoản VNVon." },
-                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "Rút tiền", SoTien = 15000000, GhiChu = "Rút 15M khỏi tài khoản." },
-                new { NgayGiaoDich = DateTime.Now.AddDays(20).Date, LoaiGiaoDich = "Hoàn trả", SoTien = 3000000, GhiChu = "Hoàn trả gốc lãi từ hồ sơ [XXXXXXXXXX]." },
-                new { NgayGiaoDich = DateTime.Now.AddDays(5).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 2500000, GhiChu = "Nạp tiền vào tài khoản VNVon." }
+                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 5000000, SoDu = 55000000, GhiChu = "Nạp tiền vào tài khoản VNVon." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "Rút tiền", SoTien = 15000000, SoDu = 40000000, GhiChu = "Rút 15M khỏi tài khoản." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(20).Date, LoaiGiaoDich = "Hoàn trả", SoTien = 3000000, SoDu = 43000000, GhiChu = "Hoàn trả gốc lãi từ hồ sơ [XXXXXXXXXX]." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(5).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 2500000, SoDu = 45500000, GhiChu = "Nạp tiền vào tài khoản VNVon." }
             };
 
             return Ok(data);
@@ -165,10 +165,10 @@ namespace VNVon.Controllers
         {
             var data = new[]
             {
-                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 5000000, GhiChu = "Nạp tiền vào tài khoản VNVon." },
-                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "Rút tiền", SoTien = 15000000, GhiChu = "Rút 15M khỏi tài khoản." },
-                new { NgayGiaoDich = DateTime.Now.AddDays(20).Date, LoaiGiaoDich = "Hoàn trả", SoTien = 3000000, GhiChu = "Hoàn trả gốc lãi từ hồ sơ [XXXXXXXXXX]." },
-                new { NgayGiaoDich = DateTime.Now.AddDays(5).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 2500000, GhiChu = "Nạp tiền vào tài khoản VNVon." }
+                new { NgayGiaoDich = DateTime.Now.AddDays(55).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 5000000, SoDu = 55000000, GhiChu = "Nạp tiền vào tài khoản VNVon." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(30).Date, LoaiGiaoDich = "Rút tiền", SoTien = 15000000, SoDu = 40000000, GhiChu = "Rút 15M khỏi tài khoản." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(20).Date, LoaiGiaoDich = "Hoàn trả", SoTien = 3000000, SoDu = 43000000, GhiChu = "Hoàn trả gốc lãi từ hồ sơ [XXXXXXXXXX]." },
+                new { NgayGiaoDich = DateTime.Now.AddDays(5).Date, LoaiGiaoDich = "Nạp tiền", SoTien = 2500000, SoDu = 45500000, GhiChu = "Nạp tiền vào tài khoản VNVon." }
             };
 
             return Ok(data);
